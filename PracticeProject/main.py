@@ -33,7 +33,7 @@ def crear_usuario(usuario: Usuario):
   usuarios.append(nuevoUsuario)
   return ("Usuario creado exitosamente")
 
-@app.get("/usuarios")
+@app.get("/usuario")
 def obtener_usuarios():
   return usuarios
 
