@@ -1,4 +1,15 @@
-from routers import tipo_programa, programa, programa_version, modulo, modalidad_academica, modalidad, programa_version_edicion, docente, detalle_programa_modulo, horario
+from routers import tipo_programa
+from routers import programa
+from routers import programa_version
+from routers import modulo
+from routers import modalidad_academica
+from routers import modalidad
+from routers import programa_version_edicion
+from routers import docente
+from routers import detalle_programa_modulo
+from routers import horario
+from routers import alumno
+from routers import detalle_programa_alumno
 
 all_routers = [
     tipo_programa.router,
@@ -11,4 +22,6 @@ all_routers = [
     docente.router,
     detalle_programa_modulo.router,
     horario.router,
+    alumno.router,
+    detalle_programa_alumno.router
 ]
