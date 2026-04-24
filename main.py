@@ -1,18 +1,10 @@
 from fastapi import FastAPI
-from database import Base, engine
-from routers import tipo_programa, programa, programa_version, modulo, modalidad_academica, modalidad, programa_version_edicion
+from routers import all_routers
 
 app = FastAPI()
 
-Base.metadata.create_all(bind=engine)
-
-app.include_router(tipo_programa.router)
-app.include_router(programa.router)
-app.include_router(programa_version.router)
-app.include_router(modulo.router)
-app.include_router(modalidad_academica.router)
-app.include_router(modalidad.router)
-app.include_router(programa_version_edicion.router)
+for router in all_routers:
+    app.include_router(router)
 
 @app.get("/")
 def root():

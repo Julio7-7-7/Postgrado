@@ -5,3 +5,5 @@ from models.modulo import Modulo
 from models.modalidad_academica import ModalidadAcademica
 from models.modalidad import Modalidad
 from models.programa_version_edicion import ProgramaVersionEdicion
+from models.docente import Docente
+from models.detalle_programa_modulo import DetalleProgramaModulo
