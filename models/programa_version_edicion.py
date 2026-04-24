@@ -1,0 +1,18 @@
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Date, ForeignKey
+from sqlalchemy.sql import func
+from database import Base
+
+class ProgramaVersionEdicion(Base):
+    __tablename__ = "programa_version_edicion"
+
+    id_programa_version_edicion = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    id_programa_version = Column(Integer, ForeignKey("programa_version.id_programa_version"), nullable=False)
+    id_modalidad = Column(Integer, ForeignKey("modalidad.id_modalidad"), nullable=False)
+    edicion = Column(Integer, nullable=False)
+    gestion = Column(String, nullable=False)
+    vigente = Column(Boolean, default=True, nullable=False)
+    fecha_inicio = Column(Date, nullable=True)
+    fecha_fin = Column(Date, nullable=True)
+    cupo_maximo = Column(Integer, nullable=True)
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from database import Base, engine
-from routers import tipo_programa, programa, programa_version, modulo, modalidad_academica, modalidad
+from routers import tipo_programa, programa, programa_version, modulo, modalidad_academica, modalidad, programa_version_edicion
 
 app = FastAPI()
 
@@ -12,7 +12,7 @@ app.include_router(programa_version.router)
 app.include_router(modulo.router)
 app.include_router(modalidad_academica.router)
 app.include_router(modalidad.router)
-
+app.include_router(programa_version_edicion.router)
 
 @app.get("/")
 def root():

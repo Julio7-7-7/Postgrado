@@ -4,4 +4,4 @@ from models.programa_version import ProgramaVersion
 from models.modulo import Modulo
 from models.modalidad_academica import ModalidadAcademica
 from models.modalidad import Modalidad
-
+from models.programa_version_edicion import ProgramaVersionEdicion
