@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from database import Base
 
@@ -10,3 +11,5 @@ class TipoPrograma(Base):
     estado = Column(String(20), nullable=False, default="activo")
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+
+    programas = relationship("Programa", back_populates="tipo_programa")
