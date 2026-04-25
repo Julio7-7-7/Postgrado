@@ -14,3 +14,4 @@ class Programa(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
 
     tipo_programa = relationship("TipoPrograma", back_populates="programas")
+    versiones = relationship("ProgramaVersion", back_populates="programa")
