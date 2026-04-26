@@ -15,3 +15,4 @@ class ProgramaVersion(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
 
     programa = relationship("Programa", back_populates="versiones")
+    modulos = relationship("Modulo", back_populates="programa_version")
