@@ -9,6 +9,7 @@ class EstadoEnum(str, Enum):
 class TipoProgramaBase(BaseModel):
     nombre: str
     estado: EstadoEnum = EstadoEnum.activo
+    cupo_minimo: int | None = None
 
     @field_validator("nombre")
     @classmethod
@@ -19,12 +20,20 @@ class TipoProgramaBase(BaseModel):
             raise ValueError("El nombre no puede superar 100 caracteres")
         return v.strip().title()
 
+    @field_validator("cupo_minimo")
+    @classmethod
+    def validar_cupo_minimo(cls, v):
+        if v is not None and v <= 0:
+            raise ValueError("El cupo mínimo debe ser mayor a 0")
+        return v
+
 class TipoProgramaCreate(TipoProgramaBase):
     pass
 
 class TipoProgramaUpdate(BaseModel):
     nombre: str | None = None
     estado: EstadoEnum | None = None
+    cupo_minimo: int | None = None
 
 class TipoProgramaResponse(TipoProgramaBase):
     id_tipo_programa: int
