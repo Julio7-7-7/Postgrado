@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, DateTime, ForeignKey
-from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 from database import Base
 
 class DetalleProgramaModulo(Base):
@@ -10,10 +10,16 @@ class DetalleProgramaModulo(Base):
     id_programa_version_edicion = Column(Integer, ForeignKey("programa_version_edicion.id_programa_version_edicion"), nullable=False)
     id_modulo = Column(Integer, ForeignKey("modulos.id_modulo"), nullable=False)
     id_docente = Column(Integer, ForeignKey("docentes.id_docente"), nullable=False)
+    id_modalidad = Column(Integer, ForeignKey("modalidades.id_modalidad"), nullable=True)
+    orden = Column(Integer, nullable=False)
     fecha_inicio = Column(Date, nullable=True)
     fecha_fin = Column(Date, nullable=True)
-    estado = Column(String, nullable=False, default="programado")
+    estado = Column(String(20), nullable=False, default="programado")
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
 
+    programa_version_edicion = relationship("ProgramaVersionEdicion", back_populates="detalles_modulo")
+    modulo = relationship("Modulo", back_populates="detalles")
+    docente = relationship("Docente", back_populates="detalles")
+    modalidad = relationship("Modalidad", back_populates="detalles_modulo")
     historial = relationship("HistorialModulo", back_populates="detalle_programa_modulo")

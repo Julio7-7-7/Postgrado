@@ -22,3 +22,4 @@ class ProgramaVersionEdicion(Base):
 
     programa_version = relationship("ProgramaVersion", back_populates="ediciones")
     modalidad = relationship("Modalidad", back_populates="ediciones")
+    detalles_modulo = relationship("DetalleProgramaModulo", back_populates="programa_version_edicion")

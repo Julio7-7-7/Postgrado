@@ -1,11 +1,13 @@
 from pydantic import BaseModel, field_validator
-from datetime import datetime
+from datetime import datetime, date
 
 class HistorialModuloBase(BaseModel):
     id_detalle_programa_modulo: int
     estado_anterior: str
     estado_nuevo: str
     motivo: str
+    fecha_inicio_original: date | None = None
+    fecha_fin_original: date | None = None
 
     @field_validator("motivo")
     @classmethod

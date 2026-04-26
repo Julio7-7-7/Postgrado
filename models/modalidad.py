@@ -14,3 +14,4 @@ class Modalidad(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
 
     ediciones = relationship("ProgramaVersionEdicion", back_populates="modalidad")
+    detalles_modulo = relationship("DetalleProgramaModulo", back_populates="modalidad")

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from database import Base
@@ -11,6 +11,8 @@ class HistorialModulo(Base):
     estado_anterior = Column(String(20), nullable=False)
     estado_nuevo = Column(String(20), nullable=False)
     motivo = Column(String(500), nullable=False)
+    fecha_inicio_original = Column(Date, nullable=True)
+    fecha_fin_original = Column(Date, nullable=True)
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
 
     detalle_programa_modulo = relationship("DetalleProgramaModulo", back_populates="historial")
