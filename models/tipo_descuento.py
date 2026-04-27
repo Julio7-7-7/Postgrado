@@ -11,7 +11,7 @@ class TipoDescuento(Base):
     porcentaje = Column(Float, nullable=False)
     descripcion = Column(String(500), nullable=True)
     requiere_documento = Column(Boolean, default=False, nullable=False)
-    id_requisito_extra = Column(Integer, ForeignKey("requisito.id_requisito"), nullable=True)
+    id_requisito_extra = Column(Integer, ForeignKey("requisitos.id_requisito"), nullable=True)
     estado = Column(String(20), nullable=False, default="activo")
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)

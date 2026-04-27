@@ -1,6 +1,9 @@
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, ConfigDict
 from datetime import datetime
 from enum import Enum
+from typing import Optional
+# Importamos el schema de Requisito para la respuesta anidada
+from schemas.requisito import RequisitoResponse 
 
 class EstadoTipoDescuentoEnum(str, Enum):
     activo = "activo"
@@ -43,6 +46,11 @@ class TipoDescuentoResponse(TipoDescuentoBase):
     id_tipo_descuento: int
     created_at: datetime
     updated_at: datetime
+    
+    # --- ADICIÓN PARA EL ORM ---
+    # El nombre 'requisito_extra' debe coincidir con el nombre de la 
+    # relación (relationship) que definiste en tu modelo de SQLAlchemy.
+    requisito_extra: Optional[RequisitoResponse] = None
 
-    class Config:
-        from_attributes = True
+    # En Pydantic v2 se prefiere model_config sobre class Config
+    model_config = ConfigDict(from_attributes=True)
